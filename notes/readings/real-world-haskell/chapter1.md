@@ -65,3 +65,40 @@ let e = exp 1
 * `^` only lets us raise a number to an integer value
 * for non-integer powers, `like e to the power of pi`, do `e ** pi`
 * Beep beep! `let` is only for use in `ghci`! We'll see how to do it in a normal Haskell program later.
+
+## Lists
+* surrounded by brackets, comma separates
+  * `[1, 2, 3]`
+* All elements must be same type
+* You can fill in a list of elements with enumeration notation
+
+```haskell
+ghci> [1..10]
+[1,2,3,4,5,6,7,8,9,10]
+```
+
+* Nice
+* Note that this is a closed interval, so it's different than `range` in python
+* we can specify step size like `[start,step..stop]`
+* You don't have to specify an upper limmit but if the enumeration doesn't have an upper bound then haskell will generate an infinite list that you have to manually kill
+  * This can actually be useful in haskell sometimes
+* `++` to concat lists
+  * [1,2,3] ++ [4,5] = [1,2,3,4,5]`
+* `:` adds an element to the __front__
+  * `1 : [2,3] = [1,2,3]`
+
+## Strings and Characters
+* Apparently simimlar to C and Perl
+* `putStrLn` for printing a string
+* Haskell differentiates btwn a single character and a string
+* A string uses double quotes but a character uses a single quote
+  * string: `"Hello, there"`
+  * char: `'a'`
+* A string is no different than a list of characters
+* The following will yield a `True` expression: `['a','b','c'] == "abc"`
+  * That means an empty list is equivalent to an empty string (weird)
+* This also means we can use the list operators to act on strings
+  * for example `'a':"bc"` and `"foo" ++ "bar"` are both totally legit
+
+## Types
+
