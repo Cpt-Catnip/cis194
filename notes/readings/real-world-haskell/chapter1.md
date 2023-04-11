@@ -101,4 +101,6 @@ ghci> [1..10]
   * for example `'a':"bc"` and `"foo" ++ "bar"` are both totally legit
 
 ## Types
-
+* we can use the _ghci_ command `:type` to get the type of some expression like `:type 'a'`
+  * note `:type 3 + 2` will return the type of that function!!!!
+* 
