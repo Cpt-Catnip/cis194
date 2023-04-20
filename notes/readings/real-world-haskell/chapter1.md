@@ -103,4 +103,9 @@ ghci> [1..10]
 ## Types
 * we can use the _ghci_ command `:type` to get the type of some expression like `:type 'a'`
   * note `:type 3 + 2` will return the type of that function!!!!
-* 
+* to load a module in `ghci` we can either use the `:module` command or the shorthand `:m`
+  * thank you
+
+## A Simple Program
+* See [`WC.hs`](../../../scrap/WC.hs)
+* `--` is a single-line comment in haskell
