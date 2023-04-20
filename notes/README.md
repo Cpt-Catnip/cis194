@@ -2,6 +2,8 @@
 
 Lecture and supplementary reading notes
 
-## Lecture Notes
+## Supplementary Readings
+* [Real World Haskell](../real-world-haskell)
+* [Learn You a Haskell for Great Good](../learn-you-a-haskell)
 
-## Readings
+## Lecture Notes

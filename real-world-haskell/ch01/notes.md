@@ -109,3 +109,11 @@ ghci> [1..10]
 ## A Simple Program
 * See [`WC.hs`](../../../scrap/WC.hs)
 * `--` is a single-line comment in haskell
+
+```haskell
+-- file: ch01/WC.hs
+-- lines beginning with "--" are comments.
+
+main = interact wordCount
+    where wordCount input = show (length (lines input)) ++ "\n"
+```
