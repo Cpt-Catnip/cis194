@@ -63,4 +63,28 @@ console.log(x + 1)  // '() => true1'
 * The order of the elements in a tuples matters and changes its type
 
 ## Functions over Lists and Tuples
-* 
+* `take` returns the first `n` elements in a list
+  * `take 2 [1, 2, 3, 4, 5]` returns `[1, 2]`
+* `drop` is the opposite and returns all _but_ the first `n` elements
+  * `drop 3 [1, 2, 3, 4, 5]` returns `[4, 5]`
+* note that we separate a function's arguments by whitespace, not commas
+* `fst` and `snd` return the first and second element of a tuple, respectively
+  * these functions are only applicable to 2-tuples
+  * `fst :: (a, b) -> a`
+
+## Passing an Expression to a Function
+* without parens, functions are evaluated __left to right__
+* This differs from something like JS, where the rightmost function gets evaluated first
+* For example, `a b c d` is equivalent to `(((a b) c) d)` while in JS you'd have to write it `a(b)(c)(d)`
+  * okay that's not actualy that different
+
+## Function Types and Purity
+* If a function has side effects, the type of the function's result will begin with `OI`
+
+```shell
+ghci> :type readFile
+readFile :: FilePath -> IO String
+```
+
+* The side effect (hidden input variable) here is the state of the file being pointed to by `FilePath`
+
