@@ -136,3 +136,73 @@ myDrop n xs = if n <= 0 || null xs
 * The `(||)` operator short circuits, meaning if the left-hand operator evaluates to `True`, the right-hand side won't evaluate
 * by convention, we align the `then` and `else` keywords under `if` though the exact amount of indentation isn't actually important
   * we could even write the whole expression in one line
+
+## Understanding Evaluation by Example
+```haskell
+-- file: ch02/RoundToEven.hs
+isOdd n = mod n 2 == 1
+```
+
+* Consider `isOdd (1 + 2)`
+* In most languages that use _strict_ evaluation, `(1 + 2)` would be evaluated first, then passed to `isOdd` and so on
+* Haskell uses __lazy evaluation__, which means a "promise" is created that `isOdd (1 + 2)` will be evaluated once needed
+* The record of unevaluated expressions is called a __thunk__
+* If the result of the expression is never needed, it's never evaluated
+* For instance, consider `print(myDrop 2 "abcd")`
+
+```haskell
+-- file ch02/myDrop.hs
+myDrop n xs = if n <= 0 || null xs
+              then xs
+              else myDrop (n - 1) (tail xs)
+```
+
+* After the first recursive call, the predicate is _not_ `if 1 <= 0 || null "bcd"`
+* Because of lazy evaluation, we instead have the thunks `if (2 - 1) <= 0 || null (tail "abcd")`
+* Once we're done with all the recursive calls though, we still just have `tail "bcd"` since we don't know if we'll need that result yet
+* `tail "bcd"` is only evaluated once ghci needs to print the expression
+* __n.b.__ the result of evaluating an expression may be a thunk!
+
+## Polymorphism in Haskell
+* consider the `last` list function
+* `last` should always return the last element of a list regardless of what type the list's elements are
+
+```shell
+ghci> :type last
+last :: [a] -> a
+```
+
+* the type of `last` uses a type _variable_ (`a`) instead of an actual type like `Int` or something
+* if a function type has a type variable in its signature, that function is polymorphic
+* both functions _and types_ can be polymorphic
+* Here's something important: Haskell has _no way_ to determine the real type of a value with a parameterized type
+  * that is, it can't operate on the value, manipulate it, create a value or whatever; haskell just treats it as a black box
+  * what "it" means here I'm still a little unclear on
+* for example
+
+```shell
+ghci> :type fst
+fst :: (a, b) -> a
+```
+
+* since we know haskell can't create a new value with type `a` given polymorphism and all that, then it _must_ be that haskell just returns the value in `a`'s position
+
+## Further Reading
+* There is a deep mathematical sense in which any nonpathological function of type (a,b) -> a must do exactly what fst does
+* Moreover, this line of reasoning extends to more complicated polymorphic functions
+* The paper “Theorems for free” by Philip Wadler (http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.38.9875) covers this procedure in depth
+
+## The Type of a Function of More Than One Argument
+* Finally!
+
+```shell
+ghci> :type take
+take :: Int -> [a] -> [a]
+```
+
+* like... huh?
+* haskell groups the arrows from right to left - the `->` is right associative
+* the above is the same as `Int -> ([a] -> [a])`
+* think about it like chaining operations
+  * pass an `Int`, and you get a function that accepts and returns a `[a]` list
+  * however, we're passing an `Int` AND a `[a]` so it's like we're making two function calls at once (to put it in imperative language)
