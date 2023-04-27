@@ -80,4 +80,28 @@ ghci> [ [ x | x <- xs, even x ] | xs <- xxs]
 [[2,2,4],[2,4,6,8],[2,4,2,6,2,6]]
 ```
 
-* 
+## Tuples
+* hmm they're making it seem like a tuple is the best way to represent state, which means there's _probably_ no notion of an opbject or whatever
+* `zip` combines two lists into a list of 2-tuples (pairs)
+* `zip` will return a list with a length equal to the shorter of the two lists
+
+```shell
+zip [5,3,2,6,2,7,2,5,4,6,6] ["im","a","turtle"]  
+[(5,"im"),(3,"a"),(2,"turtle")] 
+```
+
+* because haskell is lazy, we can zip finite lists with infinite lists!
+* Here's a super neat application of tuples and list comprehension
+* Let's say we want a list of all triangles where...
+  * all side lengths are integers
+  * no side length is greater than 10
+  * the perimeter of the triangle is 24
+* we can generate that list by simply doing
+
+```shell
+ghci> let rightTriangles' = [ (a,b,c) | c <- [1..10], b <- [1..c], a <- [1..b], a^2 + b^2 == c^2, a+b+c == 24]  
+ghci> rightTriangles'  
+[(6,8,10)]
+```
+
+* wow!!!
