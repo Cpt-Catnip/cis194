@@ -88,3 +88,51 @@ readFile :: FilePath -> IO String
 
 * The side effect (hidden input variable) here is the state of the file being pointed to by `FilePath`
 
+## Haskell Source Files, and Writing a Simple Function
+* haskell files end in the `.hs` suffix
+* you can load source files into GHCI by doing `:load add.hs`
+* you need to either be in the directory of the file you're loading or point to the file with a relative filepath
+  * To change GHCI's working dir, use the `:cd` command
+
+## Just What Is a Variable, Anyway?
+* Variables give names to expressions
+* Once a variable is bound to an expression, it's value can't be changed
+* For example, the following is valid python
+
+```python
+x = 10
+x = 11
+print x    # 11
+```
+
+* but the following haskell will return an error
+
+```haskell
+x = 10
+x = 11
+```
+
+## Conditional Evaluation
+* haskell has `if`
+* Here's an implementation of `drop`
+
+```haskell
+myDrop n xs = if n <= 0 || null xs
+              then xs
+              else myDrop (n - 1) (tail xs)
+```
+
+* `null` is a function that checks if a list is empty
+* indentation matters in haskell
+  * indenting lines continues an existing definition
+  * damn I actuall prefer code blocks but oh well
+* So some notes on `if`
+  * immediately following `if` is the boolean condition, known as the _predicate_
+  * `then` followed by another expression is what will run if the predicate evaluates to `True`
+  * `else` followed by another expression is what will run if the predicate evaluates to `False`
+  * each of these will be referred to as _branches_
+* Branches must have the same type
+* Additionally, `if` statements __must__ have an `else` branch
+* The `(||)` operator short circuits, meaning if the left-hand operator evaluates to `True`, the right-hand side won't evaluate
+* by convention, we align the `then` and `else` keywords under `if` though the exact amount of indentation isn't actually important
+  * we could even write the whole expression in one line
