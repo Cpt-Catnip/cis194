@@ -207,3 +207,8 @@ hailstoneLen n = intListLength (hailstoneSeq n) - 1
 * due to haskell's lazy evaluation, each each element of the sequence is only generated as needed, so the sequence generation and list length calculatoin are interleaved
 * this means the computation is O(1)
   * this is not entirely true but we will later learn how to make it true
+
+## A word about error messages
+* Don't be scare!
+* Read error messages; they usually contain a lot of useful information
+  * Interesting that every resource has been saying this
