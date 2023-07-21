@@ -27,6 +27,18 @@ data BillingInfo
   | Invoice CustomerID
   deriving (Show)
 
+bookID (Book id title authors) = id
+
+bookTitle (Book id title authors) = title
+
+bookAuthors (Book id title authors) = authors
+
+nicerID (Book id _ _) = id
+
+nicerTitle (Book _ title _) = title
+
+nicerAuthors (Book _ _ authors) = authors
+
 myInfo =
   Book
     9780135072455

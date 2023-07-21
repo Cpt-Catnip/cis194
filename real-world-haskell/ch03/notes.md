@@ -155,3 +155,47 @@ sumList []     = 0
 * patterns are checked in the order they are defined and matching stops at the first success
 
 ## Construction and Destruction
+
+* When doing destruction, the compiler first checks to see if the value was made using that constructor
+  * _that_ meaning the one used in the destruction I guess
+* for example, in `(Book id name authors) = Book 9 "Close Calls" ["John Long"]`
+  * `id` gets `9`
+  * `name` gets `"Close Calls"`
+  * `authors` gets `["John Long"]`
+* destruction is sometimes called deconstruction
+
+## Further Adventures
+
+* Pattern matching a tuple looks similar to constructing one
+
+```haskell
+third (a, b, c) = c
+```
+
+* You can look arbitrarily deep into a value for patterns
+
+```haskell
+complicated (True, a, x:xs, 5) = (a, xs)
+```
+
+* Here we looked into the list within the patterh
+* Also here we specified specific values, so if the first and last elements aren't `True` and `5`, respectively, the pattern won't match
+* To pattern match on an algebraic type, we use its value constructor
+  * e.g. `bookID (Book id title autors) = id`
+
+## Variable Naming in Patterns
+
+* `(x:xs)`
+* `xs` is plural of `x`
+* "ex" and "exes"
+
+## The Wild Card Pattern
+
+* The wildcard, `_`, means we don't care what's in this part of the pattern
+* This should be familiar from many languages
+* e.g. `nicerID (Book id _ _) = id`
+* Wild cards function similarly to variable but don't bind a new variable
+
+## Exhaustive Patterns and Wild Cards
+
+* 
