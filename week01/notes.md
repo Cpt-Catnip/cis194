@@ -123,7 +123,7 @@ sumPair :: (Int,Int) -> Int
 sumPair (x,y) = x + y
 ```
 
-* prof suggests there are better ways to pair three or more elements, so we should never use tupled for _anything_ other than pairs
+* prof suggests there are better ways to pair three or more elements, so we should never use tuples for _anything_ other than pairs
   * as we've seen in the readings, tuples aren't defined for singletons like `(1)`
 
 ## Using functions, and multiple arguments
