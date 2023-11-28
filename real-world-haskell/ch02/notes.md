@@ -79,7 +79,7 @@ console.log(x + 1)  // '() => true1'
   * okay that's not actualy that different
 
 ## Function Types and Purity
-* If a function has side effects, the type of the function's result will begin with `OI`
+* If a function has side effects, the type of the function's result will begin with `IO`
 
 ```shell
 ghci> :type readFile
