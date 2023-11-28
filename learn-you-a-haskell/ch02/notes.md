@@ -1,6 +1,6 @@
 # Starting Out
 
-* functions that take two arguments can be make infix by surrounding them in backticks like ``92 `div` 10``.
+* functions that take two arguments can be made infix by surrounding them in backticks like ``92 `div` 10``.
 * `[1,2,3]` is syntactic sugar for `1:2:3:[]`
   * neat!
   * recall `:` is the _add to beginning of list_ operator
